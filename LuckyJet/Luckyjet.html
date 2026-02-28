@@ -1,79 +1,115 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Prosto+One&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucky jet</title>
-    <link rel="stylesheet" href="index.css">
-    <div class="preloader">
-        <div class="preload-container">
-          <img
-            src="images/luckyjet.svg"
-            alt=""
-            style="transform: translateY(-200%) scale(3);"
-          />
-          <img
-            src="images/1win_logo.png"
-            alt=""
-          />
-          <div class="spinner"></div>
-        </div>
-      </div>
+  <meta charset="UTF-8">
+  <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Prosto+One&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucky jet</title>
+  <link rel="stylesheet" href="index.css">
 </head>
 
 <body class="page">
 
-    <div class="cv">
-        <img id="ob1" class="obloko" src="images/obl.svg">
-        <img id="ob2" class="obloko2" src="images/obl.svg">
-        
+  <!-- PRELOADER (HEAD ichida emas, BODY ichida bo'lishi kerak) -->
+  <div class="preloader">
+    <div class="preload-container">
+      <img
+        src="images/luckyjet.svg"
+        alt=""
+        style="transform: translateY(-200%) scale(3);"
+      />
+      <img src="images/1win_logo.png" alt="" />
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <div class="cv">
+    <img id="ob1" class="obloko" src="images/obl.svg" alt="">
+    <img id="ob2" class="obloko2" src="images/obl.svg" alt="">
+  </div>
+
+  <div class="winner">
+    <img class="luck" src="images/Lucky.svg" alt="">
+    <img class="win" src="images/1win_logo.png" alt="">
+  </div>
+
+  <div class="rocket">
+
+    <!-- NESTED <a> xato edi, bitta <a> qildim -->
+    <a href="https://1warlo.top/casino/list?open=register&p=xrjt" target="_blank2">
+      <button class="button2" type="button">GO TO GAME</button>
+    </a>
+
+    <img id="cup" class="rocket_fire" src="./images/fire.gif" alt="">
+    <img id="sup" class="rocket_boy" src="./images/boy.gif" alt="">
+
+    <div id="responseText2" class="text2"></div>
+    <div id="responseText" class="text"></div>
+    <div id="coefficients" class="kif"></div>
+
+    <div class="pred-txt">
+      <a>NEXT ROUND PREDICTIONS</a>
     </div>
 
-    <div class="winner">
-        <img class="luck" src="images/Lucky.svg">
-        <img class="win" src="images/1win_logo.png">
+    <div class="user-input">
+      <input
+        type="number"
+        id="userNumber"
+        placeholder="Son kiriting"
+        inputmode="numeric"
+      />
+      <button class="button2" type="button" onclick="submitNumber()">YUBORISH</button>
     </div>
 
+    <div class="loader2"></div>
 
+    <div id="ld" class="loader">
+      <div class="bar"></div>
+    </div>
 
-    <div class="rocket">
-        
-        <a target="_blank2">
-            <a href="https://1warlo.top/casino/list?open=register&p=xrjt" target="_blank2">
-                <button class="button2">GO TO GAME</button>
-            </a>
-        </a>
-        <img id="cup" class="rocket_fire" src="./images/fire.gif">
-        <img id="sup" class="rocket_boy" src="./images/boy.gif">
-        <div id="responseText2" class="text2"></div>
-        <div id="responseText" class="text"></div>
-        <div id="coefficients" class="kif"></div>
-        <div class="pred-txt">
-            <a>NEXT ROUND PREDICTIONS</a>
-          </div>
-          
-        <div class="loader2"></div>
-        <div id="ld" class="loader">
-            <div id="ld" class="bar"></div>
-        </div>
-        <div class="visible">
-          <iframe id="melement"  src="https://100hp.app/lucky/onewin/" style="pointer-events: none" onload="hideElements()" scrolling="no"></iframe>
-      </div>
-        
-   
+    <div class="visible">
+      <iframe
+        id="melement"
+        src="https://100hp.app/lucky/onewin/"
+        style="pointer-events: none"
+        onload="hideElements()"
+        scrolling="no"
+      ></iframe>
+    </div>
 
-        
-    <script src="script.js"></script>
-   
     <div id="result" class="rand"></div>
-    
+
+  </div>
+
+  <script src="script.js"></script>
+
+  <!-- Koeffitsient chiqarish -->
+  <script>
+    function submitNumber() {
+      const input = document.getElementById('userNumber');
+      const v = Number(input.value);
+
+      if (!Number.isFinite(v)) {
+        document.getElementById('result').textContent = "Son kiriting!";
+        return;
+      }
+
+      // Koeffitsient (misol): 1.00x .. 10.00x
+      const coeff = (1 + (Math.abs(v) % 900) / 100).toFixed(2);
+
+      document.getElementById('result').textContent = `Koeffitsient: ${coeff}x`;
+    }
+
+    // Enter bosganda ham submit bo'lsin
+    document.getElementById('userNumber').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') submitNumber();
+    });
+  </script>
 
 </body>
 </html>
