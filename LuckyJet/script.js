@@ -62,10 +62,6 @@ function fetchDataAndUpdate() {
         .catch(error => console.error('Error fetching data:', error));
 }
 
-
-
-
-
 function updateCoefficients(coefficients) {
 
     const coefficientsDiv = document.getElementById('coefficients');
@@ -90,9 +86,83 @@ function fadeIn() {
     }, 1700)
   }
 
-
 fetchDataAndUpdate();
 setInterval(fetchDataAndUpdate, 100);
 fadeIn();
 let intervalId = setInterval(checkSignal, 100);
-checkSignal(); 
+checkSignal();
+
+// Generate realistic coefficient based on real game statistics
+function generateRealisticCoefficient() {
+    const random = Math.random() * 100;
+    
+    if (random < 60) {
+        // 60% chance: 1.0x - 2.0x (most common)
+        return (Math.random() * (2.0 - 1.01) + 1.01).toFixed(2);
+    } else if (random < 85) {
+        // 25% chance: 2.0x - 5.0x (common)
+        return (Math.random() * (5.0 - 2.0) + 2.0).toFixed(2);
+    } else if (random < 95) {
+        // 10% chance: 5.0x - 10.0x (rare)
+        return (Math.random() * (10.0 - 5.0) + 5.0).toFixed(2);
+    } else {
+        // 5% chance: 10.0x - 100.0x (very rare)
+        return (Math.random() * (100.0 - 10.0) + 10.0).toFixed(2);
+    }
+}
+
+// Generate predictions for multiple rounds
+document.getElementById('calculateBtn').addEventListener('click', function() {
+    const roundsCount = parseInt(document.getElementById('roundsCount').value);
+    
+    if (!roundsCount || roundsCount <= 0) {
+        alert('Iltimos, raundlar sonini kiriting!');
+        return;
+    }
+    
+    if (roundsCount > 20) {
+        alert('Maksimal 20 ta raund uchun prognoz olishingiz mumkin!');
+        return;
+    }
+      // Generate predictions with realistic distribution
+    const predictions = [];
+    for (let i = 1; i <= roundsCount; i++) {
+        const coefficient = generateRealisticCoefficient();
+        predictions.push({
+            round: i,
+            coefficient: coefficient
+        });
+    }
+    
+    // Display predictions
+    const container = document.getElementById('predictionsContainer');
+    container.innerHTML = ''; // Clear previous results
+    
+    predictions.forEach(pred => {
+        const item = document.createElement('div');
+        item.className = 'prediction-item';
+        item.innerHTML = `
+            <span class="prediction-round">Raund ${pred.round}:</span>
+            <span class="prediction-coefficient">x${pred.coefficient}</span>
+        `;
+        container.appendChild(item);
+    });
+    
+    // Show container with animation
+    container.classList.add('show');
+    
+    // Update main display with first prediction
+    const firstPrediction = predictions[0];
+    const coefficientsDiv = document.getElementById('coefficients');
+    coefficientsDiv.innerText = `x${firstPrediction.coefficient}`;
+    coefficientsDiv.classList.remove('smallt');
+    coefficientsDiv.classList.add('kif');
+    
+    const responseText = document.getElementById('responseText');
+    responseText.textContent = `${firstPrediction.coefficient}x`;
+    responseText.className = 'text betting';
+    
+    // Store in localStorage
+    localStorage.setItem('predictions', JSON.stringify(predictions));
+    localStorage.setItem('roundsCount', roundsCount);
+});
