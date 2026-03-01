@@ -1,10 +1,16 @@
-
-
 .page {
     overflow: hidden;
     color: white;
-    -webkit-user-select: none; 
-    -moz-user-select: none; 
+    -webkit-user-select.fly {
+    position: absolute;
+    margin-top: 415px;
+    margin-right: 0px;
+    font-size: 60px;
+    font-weight: bold;
+    z-index: 10;
+    transition: font-size 0.4s ease;
+    font-family: 'SF Pro Display', sans-serif;
+}   -moz-user-select: none; 
     -ms-user-select: none;
     user-select: none;
 }
@@ -14,9 +20,8 @@
     position: absolute;
     margin-top: 115px;
     transition: font-size 0.3s ease;
-    z-index: 5;
+    z-index: 10;
     font-weight: bold;
-
 }
 
 
@@ -37,7 +42,7 @@
     font-weight: 900;
     color: #944ef5;
     transition: font-size 0.4s ease;
-    z-index: 5;
+    z-index: 10;
 }
 
 .visible {
@@ -48,6 +53,7 @@
   margin-top: 90px;
   margin-left: 0px;
   border-radius: 10px;
+  z-index: 1;
   /* color: rgb(255,255,255,10); */
   /* opacity: 20%; */
 }
@@ -57,18 +63,17 @@
     margin-right: 0px;
     font-size: 70px;
     font-weight: bold;
-    z-index: 5;
+    z-index: 10;
     transition: font-size 0.3s ease;
     font-family: 'SF Pro Display', sans-serif; 
-    
-        }
+}
         .betting {
             position: absolute;
             margin-top: 405px;
             margin-right: 0px;
             font-size: 80px;
             font-weight: bold;
-            z-index: 5;
+            z-index: 10;
             transition: font-size 0.3s ease;
             font-family: 'SF Pro Display', sans-serif;
         }
@@ -78,7 +83,7 @@
             margin-right: 0px;
             font-size: 60px;
             font-weight: bold;
-            z-index: 5;
+            z-index: 10;
             transition: font-size 0.4s ease;
             font-family: 'SF Pro Display', sans-serif;
         }
@@ -90,9 +95,19 @@
         margin-right: 0px;
         font-size: 27px;
         font-weight: bold;
-        z-index: 5;
+        z-index: 10;
         transition: font-size 0.4s ease;
         font-family: 'Oswald', sans-serif;    
+}
+
+.text2 {
+    position: absolute;
+    margin-top: 350px;
+    font-size: 30px;
+    font-weight: bold;
+    z-index: 10;
+    font-family: 'SF Pro Display', sans-serif;
+    color: white;
 }
 
 
@@ -115,7 +130,7 @@ iframe {
   top: -65px;
   border: none;
   border-radius: 15px;
-  z-index: 6;
+  z-index: 1;
 }
 
 .loader .bar {
@@ -224,7 +239,7 @@ img {
     width: 300px;
     height: 50px;
     border-radius: 12px;
-    margin-top: 520px;
+    margin-top: 1050px;
     font-size: 18px;
     margin-left: -150px;
     font-style: normal;
@@ -240,6 +255,7 @@ img {
     background: linear-gradient(263.87deg, rgb(148, 78, 245) 0%, rgb(92, 36, 252) 100%);
     box-shadow: rgba(25, 201, 245, 0.1) 0px 10px 20px, rgba(92, 36, 252, 0.1) 0px 10px 20px, rgb(148, 78, 245) 0px -2px 4px inset, rgba(148, 78, 245, 0.6) 0px -8px 8px inset;
     cursor: pointer;
+    z-index: 10;
 }
 
 
@@ -425,7 +441,7 @@ body,
         overflow: hidden;
         width: 100%;
         height: 100%;
-        background-image: url('images/bg.jpg'); */
+        /* background-image: url('images/bg.jpg'); */
         background-color: rgb(9, 15, 30);
         background-size: cover;
         background-position: center;
@@ -513,14 +529,13 @@ body,
       }
 
       .preloader {
-        background-image: url('images/bg.jpg'); */
+        /* background-image: url('images/bg.jpg'); */
         background-color: rgb(9, 15, 30);
         background-size: cover;
         width: 100%;
         height: 100%;
         position: absolute;
         z-index: 99;
-        background-color: rgb(9, 15, 30);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -600,6 +615,155 @@ body,
         left: 50%;
         transform: translateX(-50%);
         font-weight: 500;
+        z-index: 10;
+        pointer-events: none;
       }
-      
-     
+
+/* Bet input container and styles */
+.bet-container {
+    position: absolute;
+    margin-top: 460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 10;
+    width: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bet-input {
+    width: 280px;
+    height: 45px;
+    border-radius: 10px;
+    border: 2px solid #6b30f9;
+    background-color: rgba(21, 16, 40, 0.8);
+    color: white;
+    font-size: 16px;
+    font-family: 'SF Pro Display', sans-serif;
+    padding: 0 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.bet-input:focus {
+    border-color: #944ef5;
+    box-shadow: 0 0 15px rgba(148, 78, 245, 0.5);
+}
+
+.bet-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.calculate-btn {
+    width: 280px;
+    height: 45px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    color: white;
+    background: linear-gradient(263.87deg, rgb(148, 78, 245) 0%, rgb(92, 36, 252) 100%);
+    box-shadow: rgba(25, 201, 245, 0.1) 0px 10px 20px, rgba(92, 36, 252, 0.1) 0px 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.calculate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: rgba(25, 201, 245, 0.2) 0px 15px 25px, rgba(92, 36, 252, 0.2) 0px 15px 25px;
+}
+
+.calculate-btn:active {
+    transform: translateY(0);
+}
+
+/* Predictions container */
+.predictions-container {
+    position: absolute;
+    margin-top: 570px;
+    width: 320px;
+    max-height: 450px;
+    overflow-y: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    background-color: rgba(21, 16, 40, 0.95);
+    border-radius: 12px;
+    border: 2px solid #6b30f9;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.predictions-container.show {
+    display: flex;
+    animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.prediction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: linear-gradient(135deg, rgba(148, 78, 245, 0.2) 0%, rgba(92, 36, 252, 0.2) 100%);
+    border-radius: 8px;
+    border: 1px solid rgba(148, 78, 245, 0.3);
+    transition: all 0.3s ease;
+}
+
+.prediction-item:hover {
+    transform: translateX(5px);
+    border-color: #944ef5;
+    background: linear-gradient(135deg, rgba(148, 78, 245, 0.3) 0%, rgba(92, 36, 252, 0.3) 100%);
+}
+
+.prediction-round {
+    font-family: 'SF Pro Display', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.prediction-coefficient {
+    font-family: 'SF Pro Display', sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    color: #944ef5;
+    text-shadow: 0 0 10px rgba(148, 78, 245, 0.5);
+}
+
+/* Scrollbar styles */
+.predictions-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.predictions-container::-webkit-scrollbar-track {
+    background: rgba(38, 28, 74, 0.5);
+    border-radius: 10px;
+}
+
+.predictions-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgb(148, 78, 245) 0%, rgb(92, 36, 252) 100%);
+    border-radius: 10px;
+}
+
+.predictions-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgb(168, 98, 255) 0%, rgb(112, 56, 255) 100%);
+}
+
